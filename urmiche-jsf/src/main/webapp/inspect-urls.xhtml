@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/defaultLayout.xhtml">
+
+    <ui:define name="title">#{msg['page.load-urls.title']}</ui:define>
+
+    <ui:define name="content">
+
+        <div class="uploadForm">
+            <p>#{msg['page.load-urls.description']}</p>
+            <h:form>
+                <p:growl id="growl" autoUpdate="true" showDetail="true"/>
+
+                <p:fileUpload fileUploadListener="#{inspectUrlsView.upload}" mode="advanced" auto="true" sizeLimit="512000" update=":tableForm:linksTable"/>
+            </h:form>
+        </div>
+
+        <div class="filterForm">
+            <p>Puedes filtrar las URLs usando expresiones regulares.</p>
+
+            <p>Si filtras antes de dar al gran botón verde, sólo
+                se comprobarán las URLs incluidas en la expresión regular, por lo que obtendrás un resultado más rápido.</p>
+
+            <h:form enctype="multipart/form-data">
+                <p:inputText valueChangeListener="#{inspectUrlsView.filterBy}" placeholder="Expresión regular par filtrar el listado"/>
+            </h:form>
+        </div>
+
+        <h:form id="tableForm">
+            <div class="fullWidthButton">
+                <p:commandButton id="inspectButton" value="Comprobar las URLs" actionListener="#{inspectUrlsView.inspect()}" styleClass="specialButton" update=":tableForm:linksTable"/>
+            </div>
+            <p:dataTable id="linksTable" widgetVar="linksTableWidget"
+                         var="link" value="#{inspectUrlsView.links}"
+                         paginator="true" rows="50"
+                         currentPageReportTemplate="(#{msg['paginator.displaying']} {startRecord}-{endRecord} #{msg['paginator.of']} {totalRecords} URL)"
+                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {CurrentPageReport} "
+                         rowKey="#{link.url}" sortBy="#{link.url}">
+
+                <p:column headerText="#{msg['link.url']}">
+                    <h:outputText value="#{link.url}"/>
+                </p:column>
+                <p:column headerText="#{msg['link.status']}" width="80">
+                    <h:outputText value="#{link.status}"/>
+                </p:column>
+                <p:column headerText="#{msg['link.valid']}" width="40">
+                    <h:outputText value="#{link.valid}"/>
+                </p:column>
+                <p:column headerText="#{msg['link.lastUrl']}">
+                    <h:outputText value="#{link.lastUrl}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+        <p:dialog widgetVar="statusDialog" modal="true" draggable="false" closable="false" resizable="false" showHeader="false">
+            <p:graphicImage value="#{resource['img:ajax-loading-bar.gif']}" />
+        </p:dialog>
+    </ui:define>
+</ui:composition>
+</html>

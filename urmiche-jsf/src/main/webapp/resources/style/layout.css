@@ -1,0 +1,86 @@
+/*
+$base-unit: 1em
+$box-unit: $base-unit * 8
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #837669;
+    background-color: #ffffff;
+}
+
+div#wrapper {
+    margin: 0 auto;
+    width: 53em; /* 6 boxes + 5 spaces between boxes */
+}
+
+div#header {
+    height: 4em; /* 1/2 box */
+    padding: 1em;
+    border-bottom: 1px solid #cccccc;
+}
+
+div#header h1 {
+    display: inline;
+}
+
+div#header #logo {
+    float: right;
+}
+
+div#header #logo img {
+    border: 0;
+}
+
+div#content {
+    padding: 1em;
+}
+
+div#footer {
+    margin-bottom: 1em;
+    padding: 8em 1em 1em 1em;
+}
+div#footer .copyright {
+    float: right;
+}
+
+.uploadForm {
+    padding-bottom: 2em;
+}
+
+.filterForm {
+    padding-bottom: 1em;
+}
+
+.filterForm input {
+    width: 95.5% !important;
+    padding: 1em 1em;
+}
+
+.fullWidthButton {
+    padding: 2em 8em;
+}
+
+.specialButton {
+    width: 100%;
+    padding: 1em!important;
+
+    border: 1px solid #2F8912;
+    background: #3FB618 50% 50% repeat-x;
+    color: #ffffff;
+    text-shadow: none;
+}
+
+.specialButton.ui-state-hover {
+    border: 1px solid #2F8912;
+    background: #2F8912 50% 50% repeat-x;
+    color: #ffffff;
+}
+
+.specialButton.ui-state-active {
+    border: 1px solid #2F8912;
+    background: #2F8912 50% 50% repeat-x;
+    color: #ffffff;
+}
