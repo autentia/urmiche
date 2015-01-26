@@ -9,11 +9,23 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <url>https://github.com/autentia/...</url>
+    <url>https://github.com/autentia/urmiche</url>
     <description>Application to check if links are correct or broken. Useful to check links after a URL schema
         migration.
     </description>
     <inceptionYear>2014</inceptionYear>
+
+    <organization>
+        <name>Autentia Real Business Solutions S.L.</name>
+        <url>http://autentia.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License (GPL). Version 3.0, 29 June 2007</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+    </licenses>
 
     <modules>
         <module>urmiche-api</module>
